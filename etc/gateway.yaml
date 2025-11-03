@@ -1,0 +1,15 @@
+Name: gateway
+Host: 0.0.0.0
+Port: 8888
+Upstreams:
+  - Name: basedataapi
+    Http:
+      Target: localhost:8080
+      Prefix: /api
+    Mappings:
+      - Method: GET
+        Path: /users
+      - Method: POST
+        Path: /users
+      - Method: GET
+        Path: /users/:id
