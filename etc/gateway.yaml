@@ -15,7 +15,7 @@ Upstreams:
       - Method: POST
         Path: /oauth/login
       - Method: GET
-        Path: /auth/code
+        Path: /oauth/code
   - Name: basedataservice.rpc
     Grpc:
       Target: 127.0.0.1:18084
