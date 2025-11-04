@@ -1,15 +1,27 @@
 Name: gateway
 Host: 0.0.0.0
-Port: 8888
+Port: 18080
+Etcd:
+  Hosts:
+    - 127.0.0.1:2379
+
 Upstreams:
-  - Name: basedataapi
+  - Name: auth
     Http:
-      Target: localhost:8080
-      Prefix: /api
+      Target: http://127.0.0.1:18081
+    # 将 /oauth/login 映射到 auth 服务
+    Mappings:
+      - Method: POST
+        Path: /oauth/login
+      - Method: GET
+        Path: /auth/code
+  - Name: basedata
+    Grpc:
+      Etcd:
+        Hosts:
+          - 127.0.0.1:2379
+        Key: basedataservice.rpc
+    # 示例映射，根据实际需要添加更多映射
     Mappings:
       - Method: GET
         Path: /users
-      - Method: POST
-        Path: /users
-      - Method: GET
-        Path: /users/:id
