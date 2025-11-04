@@ -24,4 +24,8 @@ Upstreams:
     # 示例映射，根据实际需要添加更多映射
     Mappings:
       - Method: GET
-        Path: /users
+        Path: /user/:id
+        RpcPath: /basedata_service.SysUsers/GetUserById
+      - Method: GET
+        Path: /user/name/:username
+        RpcPath: /basedata_service.SysUsers/GetUserByUsername
