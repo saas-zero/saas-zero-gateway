@@ -1,30 +1,142 @@
 Name: gateway
 Host: 0.0.0.0
 Port: 18080
-Etcd:
-  Hosts:
-    - 127.0.0.1:2379
 
 Upstreams:
   - Name: authservice.api
     Http:
       Target: 127.0.0.1:18081
-      Timeout: 10000    # 单位为毫秒，默认值 3000
-    # 将 /oauth/login 映射到 auth 服务
+      Timeout: 10000
     Mappings:
       - Method: POST
         Path: /oauth/login
       - Method: GET
+        Path: /oauth/verify
+      - Method: POST
+        Path: /oauth/refresh
+      - Method: GET
+        Path: /oauth/userinfo
+      - Method: GET
+        Path: /oauth/menus
+      - Method: GET
+        Path: /oauth/permissions
+      - Method: POST
+        Path: /oauth/password/change
+      - Method: POST
+        Path: /oauth/password/reset
+      - Method: GET
         Path: /oauth/code
-  - Name: basedataservice.rpc
-    Grpc:
-      Target: 127.0.0.1:18084
-      Timeout: 10000    # 单位为毫秒，默认值 3000
-    # 示例映射，根据实际需要添加更多映射
+
+  - Name: basedata-api
+    Http:
+      Target: 127.0.0.1:18083
+      Timeout: 10000
     Mappings:
+      # System CRUD
+      - Method: POST
+        Path: /system/user/create
+      - Method: PUT
+        Path: /system/user/update
+      - Method: DELETE
+        Path: /system/user/delete
       - Method: GET
-        Path: /user/:id
-        RpcPath: basedata_service.SysUsers/GetUserById
+        Path: /system/user/list
       - Method: GET
-        Path: /user/name/:username
-        RpcPath: basedata_service.SysUsers/GetUserByUsername
+        Path: /system/user/:id
+      - Method: GET
+        Path: /system/user/username/:username
+      - Method: POST
+        Path: /system/role/create
+      - Method: PUT
+        Path: /system/role/update
+      - Method: DELETE
+        Path: /system/role/delete
+      - Method: GET
+        Path: /system/role/list
+      - Method: GET
+        Path: /system/role/:id
+      - Method: POST
+        Path: /system/menu/create
+      - Method: PUT
+        Path: /system/menu/update
+      - Method: DELETE
+        Path: /system/menu/delete
+      - Method: GET
+        Path: /system/menu/list
+      - Method: GET
+        Path: /system/menu/:id
+      - Method: GET
+        Path: /system/menu/tree
+      - Method: POST
+        Path: /system/dept/create
+      - Method: PUT
+        Path: /system/dept/update
+      - Method: DELETE
+        Path: /system/dept/delete
+      - Method: GET
+        Path: /system/dept/list
+      - Method: GET
+        Path: /system/dept/:id
+      - Method: GET
+        Path: /system/dept/tree
+      - Method: POST
+        Path: /system/dict/create
+      - Method: PUT
+        Path: /system/dict/update
+      - Method: DELETE
+        Path: /system/dict/delete
+      - Method: GET
+        Path: /system/dict/list
+      - Method: GET
+        Path: /system/dict/:id
+      - Method: POST
+        Path: /system/dict/data/create
+      - Method: PUT
+        Path: /system/dict/data/update
+      - Method: DELETE
+        Path: /system/dict/data/delete
+      - Method: GET
+        Path: /system/dict/data/list
+      - Method: GET
+        Path: /system/dict/data/:id
+      - Method: GET
+        Path: /system/dict/data/dictKey/:dictKey
+      - Method: POST
+        Path: /system/tenant/create
+      - Method: PUT
+        Path: /system/tenant/update
+      - Method: DELETE
+        Path: /system/tenant/delete
+      - Method: GET
+        Path: /system/tenant/list
+      - Method: GET
+        Path: /system/tenant/:id
+      - Method: POST
+        Path: /system/package/create
+      - Method: PUT
+        Path: /system/package/update
+      - Method: DELETE
+        Path: /system/package/delete
+      - Method: GET
+        Path: /system/package/list
+      - Method: GET
+        Path: /system/package/:id
+      - Method: POST
+        Path: /system/api/create
+      - Method: PUT
+        Path: /system/api/update
+      - Method: DELETE
+        Path: /system/api/delete
+      - Method: GET
+        Path: /system/api/list
+      - Method: GET
+        Path: /system/api/:id
+      # Init endpoints
+      - Method: POST
+        Path: /init/package/create
+      - Method: POST
+        Path: /init/tenant/create
+      - Method: POST
+        Path: /init/user/create
+      - Method: POST
+        Path: /init/role/create

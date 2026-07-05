@@ -8,7 +8,7 @@ import (
 	"github.com/zeromicro/go-zero/gateway"
 )
 
-var configFile = flag.String("f", "D:\\GolandProjects\\saas-zero\\apps\\saas-zero-gateway\\etc\\gateway.yaml", "the config file")
+var configFile = flag.String("f", "etc/gateway.yaml", "the config file")
 
 func main() {
 	flag.Parse()
