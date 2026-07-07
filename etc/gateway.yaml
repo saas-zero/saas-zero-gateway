@@ -133,6 +133,8 @@ Upstreams:
         Path: /system/api/:id
       # Init endpoints
       - Method: POST
+        Path: /init/all
+      - Method: POST
         Path: /init/package/create
       - Method: POST
         Path: /init/tenant/create
