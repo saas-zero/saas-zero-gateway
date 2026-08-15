@@ -75,6 +75,8 @@ Upstreams:
         Path: /system/menu/detail
       - Method: GET
         Path: /system/menu/tree
+      - Method: GET
+        Path: /system/menu/routers
       # Dept
       - Method: POST
         Path: /system/dept/create
@@ -147,6 +149,11 @@ Upstreams:
         Path: /system/api/list
       - Method: GET
         Path: /system/api/detail
+      # Log
+      - Method: GET
+        Path: /system/log/loginLog/list
+      - Method: GET
+        Path: /system/log/operationLog/list
       # Init endpoints
       - Method: POST
         Path: /init/all
