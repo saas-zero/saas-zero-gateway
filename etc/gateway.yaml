@@ -127,6 +127,8 @@ Upstreams:
         Path: /system/tenant/detail
       - Method: POST
         Path: /system/tenant/changeStatus
+      - Method: GET
+        Path: /system/tenant/users
       # Package
       - Method: POST
         Path: /system/package/create
@@ -138,6 +140,10 @@ Upstreams:
         Path: /system/package/list
       - Method: GET
         Path: /system/package/detail
+      - Method: POST
+        Path: /system/package/assignMenus
+      - Method: POST
+        Path: /system/package/assignApis
       # Api
       - Method: POST
         Path: /system/api/create
