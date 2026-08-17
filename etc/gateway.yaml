@@ -154,6 +154,8 @@ Upstreams:
       - Method: GET
         Path: /system/api/list
       - Method: GET
+        Path: /system/api/mine
+      - Method: GET
         Path: /system/api/detail
       # Log
       - Method: GET
