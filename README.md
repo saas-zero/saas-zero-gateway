@@ -43,11 +43,14 @@ Upstreams:
 ## 启动
 
 ```bash
-# 确保 etcd 已启动
 go run ./apps/saas-zero-gateway
 # 或进入目录
 cd apps/saas-zero-gateway
-go run gateway.go -f etc/gateway.yaml
+# 修改 configFile 或使用默认 etc/gateway.yaml
 ```
 
-> 网关依赖 etcd 服务发现，需等所有后端服务就绪后再启动。
+> 网关为**纯 HTTP 直连**（Target 为 `127.0.0.1:18081/18083`），**不依赖 etcd 服务发现**，无需等待 etcd 就绪。
+
+## 新增接口路由
+
+在 `etc/gateway.yaml` 对应 Upstream 的 Mappings 中追加 `Method + Path` 即可（如 `/system/package/assignMenus`）。
