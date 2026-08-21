@@ -5,7 +5,7 @@ Port: 18080
 Upstreams:
   - Name: authservice.api
     Http:
-      Target: saas-zero-auth-api.app.svc.cluster.local:18081
+      Target: 127.0.0.1:18081
       Timeout: 10000
     Mappings:
       - Method: POST
@@ -29,7 +29,7 @@ Upstreams:
 
   - Name: basedata-api
     Http:
-      Target: saas-zero-basedata-api.app.svc.cluster.local:18083
+      Target: 127.0.0.1:18083
       Timeout: 10000
     Mappings:
       # User
