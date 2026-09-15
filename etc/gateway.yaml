@@ -5,7 +5,7 @@ Port: 18080
 Upstreams:
   - Name: authservice.api
     Http:
-      Target: saas-zero-auth-api.app.svc.cluster.local:18081
+      Target: 127.0.0.1:18081
       Timeout: 10000
     Mappings:
       - Method: POST
@@ -29,7 +29,7 @@ Upstreams:
 
   - Name: basedata-api
     Http:
-      Target: saas-zero-basedata-api.app.svc.cluster.local:18083
+      Target: 127.0.0.1:18083
       Timeout: 10000
     Mappings:
       # User
@@ -173,3 +173,30 @@ Upstreams:
         Path: /init/user/create
       - Method: POST
         Path: /init/role/create
+
+  - Name: job-api
+    Http:
+      Target: 127.0.0.1:18086
+      Timeout: 10000
+    Mappings:
+      # Job
+      - Method: POST
+        Path: /system/job/create
+      - Method: POST
+        Path: /system/job/update
+      - Method: POST
+        Path: /system/job/delete
+      - Method: GET
+        Path: /system/job/list
+      - Method: GET
+        Path: /system/job/detail
+      - Method: POST
+        Path: /system/job/start
+      - Method: POST
+        Path: /system/job/pause
+      - Method: POST
+        Path: /system/job/runOnce
+      - Method: GET
+        Path: /system/job/log/list
+      - Method: POST
+        Path: /system/job/log/clean
