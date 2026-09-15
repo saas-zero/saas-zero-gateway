@@ -200,3 +200,5 @@ Upstreams:
         Path: /system/job/log/list
       - Method: POST
         Path: /system/job/log/clean
+      - Method: GET
+        Path: /system/job/handlers
